@@ -51,28 +51,17 @@ Things you may want to cover:
 | user         | references | null: false,foreign_key: true |
 | name         | string     | null: false                   |
 | description  | text       | null: false                   |
-| images_id    | string     | null: false                   |
 | category_id  | string     | null: false                   |
 | status_id    | string     | null: false                   |
 | delivery_id  | string     | null: false                   |
 | purchases_id | string     | null: false                   |
 | shipping_day | string     | null: false                   |
-| price        | string     | null: false                   |
+| price        | integer    | null: false                   |
 
 ### Association
-- belongs_to :users
-- has_one :purchases
-- has_one :images
-
-
-## images テーブル
-
-| Column | Type       | Options                        |
-| ------ | ---------- | ------------------------------ |
-| image  | string     | null: false                    |
-
-### Association
-- belongs_to :items
+- belong_to :users
+- have_one :purchases
+- have_one :images
 
 
 ## addresses テーブル
@@ -83,11 +72,11 @@ Things you may want to cover:
 |  prefectures_id   | string | null: false,foreign_key: true |
 |  city             | string | null: false                   |
 |  house_number     | string | null: false                   |
-|  building_name    | string | null: false                   |
+|  building_name    | string |                               |
 |  telephone_number | string | null: false                   |
 
 ### Association
-- belongs_to :users
+- belongs_to :purchases
 
 
 ## purchasesテーブル
@@ -98,9 +87,9 @@ Things you may want to cover:
 |  item   | references | null: false,foreign_key: true |
 
 ### Association
-- has_one :addresses
-- belongs_to :users
-
+- have_one :addresses
+- belong_to :users
+- belong_to :items
 
 
 ## active_hashに該当するものはDBにデータを保存しないためREADMEへの記載はなし。
