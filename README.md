@@ -37,7 +37,7 @@ Things you may want to cover:
 |  first_name      | string | null: false |
 |  last_name_kana  | string | null: false |
 |  first_name_kana | string | null: false |
-|  birthday        | data   | null: false |
+|  birthday        | date   | null: false |
 
 ### Association
 - has_many :items
@@ -68,7 +68,7 @@ Things you may want to cover:
 |  Column           | Type    | Options                       |
 | ----------------- | ------- | ----------------------------- |
 |  post_cord        | string  | null: false                   |
-|  prefectures_id   | integer | null: false,foreign_key: true |
+|  prefectures_id   | integer | null: false                   |
 |  city             | string  | null: false                   |
 |  house_number     | string  | null: false                   |
 |  building_name    | string  |                               |
