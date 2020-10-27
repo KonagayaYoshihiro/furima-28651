@@ -46,37 +46,37 @@ Things you may want to cover:
 
 ## items テーブル
 
-| Column       | Type       | Options                       |
-| ------------ | ---------- | ----------------------------- |
-| user         | references | null: false,foreign_key: true |
-| name         | string     | null: false                   |
-| description  | text       | null: false                   |
-| category_id  | string     | null: false                   |
-| status_id    | string     | null: false                   |
-| delivery_id  | string     | null: false                   |
-| purchases_id | string     | null: false                   |
-| shipping_day | string     | null: false                   |
-| price        | integer    | null: false                   |
+| Column         | Type       | Options                       |
+| -------------- | ---------- | ----------------------------- |
+| user           | references | null: false,foreign_key: true |
+| name           | string     | null: false                   |
+| description    | text       | null: false                   |
+| category_id    | integer    | null: false                   |
+| status_id      | integer    | null: false                   |
+| delivery_id    | integer    | null: false                   |
+| purchases_id   | integer    | null: false                   |
+| shipping_day_id| integer    | null: false                   |
+| price          | integer    | null: false                   |
 
 ### Association
-- belong_to :users
-- have_one :purchases
-- have_one :images
+- belongs_to :user
+- has_one :purchase
 
 
 ## addresses テーブル
 
-|  Column           | Type   | Options                       |
-| ----------------- | ------ | ----------------------------- |
-|  post_cord        | string | null: false                   |
-|  prefectures_id   | string | null: false,foreign_key: true |
-|  city             | string | null: false                   |
-|  house_number     | string | null: false                   |
-|  building_name    | string |                               |
-|  telephone_number | string | null: false                   |
+|  Column           | Type    | Options                       |
+| ----------------- | ------- | ----------------------------- |
+|  post_cord        | string  | null: false                   |
+|  prefectures_id   | integer | null: false,foreign_key: true |
+|  city             | string  | null: false                   |
+|  house_number     | string  | null: false                   |
+|  building_name    | string  |                               |
+|  telephone_number | string  | null: false                   |
+|  purchase         | integer | null: false,foreign_key: true |
 
 ### Association
-- belongs_to :purchases
+- belong_to :purchase
 
 
 ## purchasesテーブル
@@ -87,9 +87,9 @@ Things you may want to cover:
 |  item   | references | null: false,foreign_key: true |
 
 ### Association
-- have_one :addresses
-- belong_to :users
-- belong_to :items
+- has_one :address
+- belongs_to :user
+- belongs_to :item
 
 
 ## active_hashに該当するものはDBにデータを保存しないためREADMEへの記載はなし。
