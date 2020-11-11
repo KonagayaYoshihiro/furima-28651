@@ -44,11 +44,6 @@ describe User do
         @user.first_name_kana
         @user.valid?
       end
-
-      it '苗字の振り仮名がカタカナ全角の場合のみ登録できる' do
-        @user.birthday
-        @user.valid?
-      end
     end
 
     context '新規登録がうまくいかないとき' do
