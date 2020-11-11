@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   def index
   end
 
-  def destroy
-  end
+  #後ほど使う
+  #def destroy
+  #end
 end
