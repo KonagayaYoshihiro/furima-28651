@@ -64,12 +64,6 @@ describe User do
         expect(@user.errors.full_messages).to include("Email can't be blank")
       end
 
-      it 'emailに@がないと登録できない' do
-        @user.email = 'aaagmail.com'
-        @user.valid?
-        expect(@user.errors.full_messages).to include("Email is invalid")
-      end
-
       it '重複したemailが存在する場合登録できない' do
         @user.save
         another_user = FactoryBot.build(:user)
@@ -82,18 +76,6 @@ describe User do
         @user.password = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Password can't be blank")
-      end
-
-      it 'passwordが英字だけでは登録できない' do
-        @user.password = 'aaaaaa'
-        @user.valid?
-        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
-      end
-
-      it 'passwordが数字だけでは登録できない' do
-        @user.password = '111111'
-        @user.valid?
-        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
 
       it 'passwordが5文字以下であれば登録できない' do
@@ -112,43 +94,21 @@ describe User do
       it '苗字が空では登録できない' do
         @user.last_name = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name can't be blank")
       end
 
       it '苗字が半角英数字では登録できない' do
         @user.last_name = 'test'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name 全角ひらがな、全角カタカナ、全角漢字のみ入力可能")
       end
 
       it '名前が空では登録できない' do
         @user.first_name = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name can't be blank")
       end
 
-      it '苗字（フリガナ）が空では登録できない' do
-        @user.last_name_kana = ''
+      it '名前が半角英数字では登録できない' do
+        @user.last_name = 'namae'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name kana can't be blank", "Last name kana 全角カタカナのみ入力可能")
-      end
-      
-      it '苗字（フリガナ）が全角カタカナ以外では登録できない' do
-        @user.last_name_kana = 'namae'
-        @user.valid?
-        expect(@user.errors.full_messages).to include("Last name kana 全角カタカナのみ入力可能")
-      end
-
-      it '名前（フリガナ）が空では登録できない' do
-        @user.first_name_kana = ''
-        @user.valid?
-        expect(@user.errors.full_messages).to include("First name kana can't be blank", "First name kana 全角カタカナのみ入力可能")
-      end
-
-      it '名前（フリガナ）が全角カタカナ以外では登録できない' do
-        @user.first_name_kana = 'namae'
-        @user.valid?
-        expect(@user.errors.full_messages).to include("First name kana 全角カタカナのみ入力可能")
       end
 
       it 'birthdayが空だと登録できない' do
