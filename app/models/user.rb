@@ -15,7 +15,7 @@ class User < ApplicationRecord
   validates :first_name, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: '全角ひらがな、全角カタカナ、全角漢字のみ入力可能' }
   validates :last_name_kana, format: { with: /\A[ァ-ヶー－]+\z/, message: '全角カタカナのみ入力可能' }
   validates :first_name_kana, format: { with: /\A[ァ-ヶー－]+\z/, message: '全角カタカナのみ入力可能' }
-  validates :password, format: { with: /\A[a-z0-9]+\z/i, message: '半角英数' }
+  validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/, message: '半角英数' }
   validates :birthday, presence: true
   end
 end

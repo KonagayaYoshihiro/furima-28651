@@ -4,10 +4,7 @@ class UsersController < ApplicationController
   end
 
   def new
-    @users = User.new
-  end
-
-  def get
+    @user = User.new
   end
 
   def edit
