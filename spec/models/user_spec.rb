@@ -93,6 +93,13 @@ describe User do
         expect(@user.errors.full_messages).to include("Password 半角英数")
       end
 
+      it 'passwordが英字のみであれば登録できない' do
+        @user.password = 'aaaaaa'
+        @user.password_confirmation = 'aaaaaa'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password 半角英数")
+      end
+
       it 'passwordが存在してもpassword_confirmationが空では登録できない' do
         @user.password_confirmation = ' '
         @user.valid?
