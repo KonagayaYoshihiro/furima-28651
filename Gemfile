@@ -59,4 +59,10 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
 
+#rspec
 gem 'pry-rails'
+
+#アクティブハッシュ
+gem 'active_hash'
+
+gem 'mini_magick'
