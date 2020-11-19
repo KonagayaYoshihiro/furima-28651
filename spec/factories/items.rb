@@ -1,12 +1,13 @@
 FactoryBot.define do
-  factory :name do
-    nickname { 'abe' }
+  factory :item do
+    user
     name { 'nametest1' }
     description { 'descriptiontest1' }
     category_id { '2' }
-    first_name { '太郎' }
-    last_name_kana { 'シケン' }
-    first_name_kana { 'タロウ' }
-    birthday { '2020-01-01' }
+    status_id { '2' }
+    delivery_area_id { '2' }
+    delivery_price_id { '2' }
+    shipping_day_id { '2' }
+    price {'1000'}
   end
 end
