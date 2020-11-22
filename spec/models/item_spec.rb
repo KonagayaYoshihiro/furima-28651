@@ -9,48 +9,7 @@ describe Item do
       it 'user_id,name,description,category_id,status_id,delivery_area_id,delivery_price_id,shipping_day_id,priceが存在すれば登録できる' do
         expect(@item).to be_valid
       end
-
-      it '商品名があると登録できる' do
-        @item.name
-        expect(@item).to be_valid
-      end
-
-      it 'カテゴリーの情報があると登録できる' do
-        @item.category_id
-        expect(@item).to be_valid
-      end
-
-      it '商品の状態についての情報があると登録できる' do
-        @item.status_id
-        expect(@item).to be_valid
-      end
-
-      it '配送料についての情報があると登録できる' do
-        @item.delivery_price_id
-        expect(@item).to be_valid
-      end
-
-      it '配送元地域についての情報があると登録できる' do
-        @item.delivery_area_id
-        expect(@item).to be_valid
-      end
-
-      it '発送日数についての情報があると登録できる' do
-        @item.shipping_day_id
-        expect(@item).to be_valid
-      end
-
-      it '販売価格についての情報があると登録できる' do
-        @item.price
-        expect(@item).to be_valid
-      end
-
-      it '販売価格が半角数字のみ登録できる' do
-        @item.price
-        expect(@item).to be_valid
-      end
     end
-
 
 
     context '新規登録がうまくいかないとき' do
@@ -72,10 +31,22 @@ describe Item do
         expect(@item.errors.full_messages).to include("Category can't be blank", "Category is not a number")
       end
 
+      it 'カテゴリー情報がidの1だと登録できない' do
+        @item.category_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Category must be other than 1")
+      end
+
       it '商品状態がないと登録できない' do
         @item.status_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Status can't be blank", "Status is not a number")
+      end
+
+      it '商品状態の情報がidの1だと登録できない' do
+        @item.status_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Status must be other than 1")
       end
 
       it '配送料についての情報がないと登録できない' do
@@ -84,16 +55,34 @@ describe Item do
         expect(@item.errors.full_messages).to include("Delivery price can't be blank", "Delivery price is not a number")
       end
 
+      it '配送料の情報がidの1だと登録できない' do
+        @item.delivery_price_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Delivery price must be other than 1")
+      end
+
       it '配送元地域についての情報がないと登録できない' do
         @item.delivery_area_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery area can't be blank", "Delivery area is not a number")
       end
 
+      it '配送元地域の情報がidの1だと登録できない' do
+        @item.delivery_area_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Delivery area must be other than 1")
+      end
+
       it '発送日数についての情報がないと登録できない' do
         @item.shipping_day_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping day is not a number")
+      end
+
+      it '発送日数の情報がidの1だと登録できない' do
+        @item.shipping_day_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Shipping day must be other than 1")
       end
 
       it '価格についての情報がないと登録できない' do
@@ -103,13 +92,13 @@ describe Item do
       end
 
       it '販売価格が299円以下では登録できない' do
-        @item.price = '299'
+        @item.price = 299
         @item.valid?
         expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
       end
 
       it '販売価格が1000万円以上では登録できない' do
-        @item.price = '10000000'
+        @item.price = 10000000
         @item.valid?
         expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
       end
