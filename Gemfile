@@ -59,15 +59,14 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
 
-<<<<<<< Updated upstream
-gem 'pry-rails'
-=======
+
 #rspec
 gem 'pry-rails'
 
 #アクティブハッシュ
 gem 'active_hash'
 
+
 gem 'mini_magick'
 gem 'image_processing', '~> 1.2'
->>>>>>> Stashed changes
+
