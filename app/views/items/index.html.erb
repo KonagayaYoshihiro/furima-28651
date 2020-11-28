@@ -131,7 +131,9 @@
       <li class='list'>
          <% @items.each do |items| %>
           <div class="items_list" style="background-image: url(<%= items.image %>);">
+            <%= link_to item_path(items.id) do %>
             <p><%= image_tag items.image.variant(resize: '230x230'), class: 'items-image' if items.image.attached?%></p>
+            <%end%>
             <P><%= items.name %></p>
             <P><%= items.price %>円(税込み)</P>
           </div>
