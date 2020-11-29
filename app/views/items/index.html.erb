@@ -127,41 +127,35 @@
     <ul class='item-lists'>
 
       <%# 商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
-      <% if @items.length > 0 %>
-      <li class='list'>
-         <% @items.each do |items| %>
-          <div class="items_list" style="background-image: url(<%= items.image %>);">
-            <%= link_to item_path(items.id) do %>
-            <p><%= image_tag items.image.variant(resize: '230x230'), class: 'items-image' if items.image.attached?%></p>
-            <%end%>
-            <P><%= items.name %></p>
-            <P><%= items.price %>円(税込み)</P>
-          </div>
-         <% end %>
-        <%= link_to "#" do %>
-        <div class='item-img-content'>
-          <%= image_tag "item-sample.png", class: "item-img" %>
-
-          <%# 商品が売れていればsold outを表示しましょう %>
-          <div class='sold-out'>
-            <span>Sold Out!!</span>
-          </div>
-          <%# //商品が売れていればsold outを表示しましょう %>
+    <% if @items.length > 0 %>
+     <% @items.each do |items| %>
+     <li class='list'>
+      <div class="items_list" style="background-image: url(<%= items.image %>);">
+       <%= link_to item_path(items.id) do %>
+       <div class='item-img-content'>
+       <%= image_tag items.image.variant(resize: '230x230'), class: 'items-image' if items.image.attached?%>
+        <%# 商品が売れていればsold outを表示しましょう %>
+        <div class='sold-out'>
+          <span>Sold Out!!</span>
         </div>
+          <%# //商品が売れていればsold outを表示しましょう %>
         <div class='item-info'>
-          <h3 class='item-name'>
-            <%= "商品名" %>
-          </h3>
-          <div class='item-price'>
-            <span><%= "販売価格" %>円<br>(税込み)</span>
-            <div class='star-btn'>
+         <h3 class='item-name'>
+          <%= items.name %>
+         </h3>
+         <div class='item-price'>
+            <span><%= items.price %>円<br>(税込み)</span>
+          <div class='star-btn'>
               <%= image_tag "star.png", class:"star-icon" %>
               <span class='star-count'>0</span>
-            </div>
           </div>
+         </div>
         </div>
-        <% end %>
-      </li>
+       </div>
+       <%end%>
+      </div>
+     </li>
+     <%end%>
       <%# //商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
 
       <%# 商品がない場合のダミー %>
