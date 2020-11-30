@@ -19,14 +19,8 @@ class ItemsController < ApplicationController
   end
 
   def show
-    #@items_params = params[:id]
-    #@seller = Item.find(user_id)
-    #@name = Item.find(description)
-    #@category = Item.find(category_id)
-    #@status = Item.find(status_id)
-    #@delivery_area = Item.find(delivery_area)
 
-    @item_params = Item.find(params[:id])
+    @item = Item.find(params[:id])
 
   end
 
