@@ -19,7 +19,9 @@ class ItemsController < ApplicationController
   end
 
   def show
-    #@items_params = params[:id]
+
+    @item = Item.find(params[:id])
+
   end
 
   def edit
