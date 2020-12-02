@@ -23,9 +23,8 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    if current_user.id == @item.user_id   
-    else
-    redirect_to item_path
+    unless current_user.id == @item.user_id 
+      redirect_to item_path
     end
   end
 
@@ -33,7 +32,7 @@ class ItemsController < ApplicationController
     if @item.update(item_params)
       redirect_to item_path
     else
-      redirect_to edit_item_path
+      render :edit
     end
   end
 
