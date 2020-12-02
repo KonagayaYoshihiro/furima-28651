@@ -23,7 +23,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    if user_signed_in? && current_user.id == @item.user_id
+    if current_user.id == @item.user_id
     set_item
     else
     redirect_to item_path
@@ -31,7 +31,6 @@ class ItemsController < ApplicationController
   end
 
   def update
-    set_item
     @item.update(item_params)
     redirect_to item_path
   end
