@@ -1,13 +1,9 @@
 class OrdersController < ApplicationController
-
+  before_action :authenticate_user!,except: [:index]
   before_action :item_find, only: [:index, :create]
 
   def index
     @purchase_addresses = Order.new
-    # @purchase = フォームオブジェクト.new  @item.find(params[:id])
-    unless user_signed_in?
-      redirect_to user_session_path
-    end
 
     unless @item.purchase == []
       redirect_to root_path
