@@ -16,6 +16,8 @@ belongs_to :delivery_area
 belongs_to :shipping_day
 #画像
 has_one_attached :image
+#購入者
+has_many :purchase
 
 def was_attached?
   self.image.attached?

@@ -7,6 +7,10 @@ class OrdersController < ApplicationController
     unless user_signed_in?
       redirect_to user_session_path
     end
+
+    unless @item.purchase == []
+      redirect_to root_path
+    end
   end
 
   def create

@@ -135,6 +135,9 @@
        <div class='item-img-content'>
        <%= image_tag items.image.variant(resize: '230x230'), class: 'items-image' if items.image.attached?%>
         <%# 商品が売れていればsold outを表示しましょう %>
+      <% unless items.purchase == [] %>
+      <%# unless items.purchase[0] == nil %>
+      <%# unless items.purchase.length == 0 %>
         <div class='sold-out'>
           <span>Sold Out!!</span>
         </div>
@@ -152,6 +155,7 @@
          </div>
         </div>
        </div>
+        <%end%>
        <%end%>
       </div>
      </li>
