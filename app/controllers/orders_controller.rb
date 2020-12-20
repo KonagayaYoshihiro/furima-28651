@@ -1,7 +1,8 @@
 class OrdersController < ApplicationController
 
+  before_action :item_find, only: [:index, :create]
+
   def index
-    @item = Item.find(params[:item_id])
     @purchase_addresses = Order.new
     # @purchase = フォームオブジェクト.new  @item.find(params[:id])
     unless user_signed_in?
@@ -14,7 +15,6 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @purchase_addresses = Order.new(purchase_addresses_params)
     if @purchase_addresses.valid?
        Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  # 自身のPAY.JPテスト秘密鍵を記述しましょう
@@ -28,6 +28,10 @@ class OrdersController < ApplicationController
     else
       render action: :index
     end
+  end
+
+  def item_find
+    @item = Item.find(params[:item_id])
   end
 
 
