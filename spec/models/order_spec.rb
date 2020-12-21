@@ -7,12 +7,17 @@ RSpec.describe Order, type: :model do
 
   describe '住所登録' do
     context '住所登録がうまくいくとき' do
-      it 'user_id, :item_id, :postal_code, :delivery_area_id, :city, :house_number, :building_name,:telephone_numberが存在すれば登録できる' do
+      it 'user_id, :item_id, :postal_code, :delivery_area_id, :city, :house_number, :building_name, :telephone_numberが存在すれば登録できる' do
         expect(@order).to be_valid
       end
 
       it "priceとtokenがあれば保存ができること" do
         expect(@order).to be_valid
+      end
+
+      it "建物名が存在しなくても購入できる" do
+          @order.building_name = ''
+          expect(@order).to be_valid
       end
     end 
       
@@ -53,13 +58,19 @@ RSpec.describe Order, type: :model do
         expect(@order.errors.full_messages).to include("Delivery area 都道府県を入力して下さい")
       end
 
+      it '都道府県情報がidの1だと登録できない' do
+        @order.delivery_area_id = 0
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Delivery area 都道府県を入力して下さい")
+      end
+
       it '市町村がないと登録できない' do
         @order.city =''
         @order.valid?
         expect(@order.errors.full_messages).to include("City can't be blank")
       end
 
-      it '建物名がないと登録できない' do
+      it '番地がないと登録できない' do
         @order.house_number = ''
         @order.valid?
         expect(@order.errors.full_messages).to include("House number can't be blank")
@@ -76,6 +87,13 @@ RSpec.describe Order, type: :model do
         @order.valid?
         expect(@order.errors.full_messages).to include("Telephone number 半角英数で入力してください")
       end
+
+      it '電話番号が12桁以上では登録できない' do
+        @order.telephone_number = '111111111111'
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Telephone number is too long (maximum is 11 characters)")
+      end
+
 
       it "tokenが空では登録できないこと" do
         @order.token = nil
