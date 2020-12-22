@@ -14,7 +14,7 @@ class Order
     #番地についてのバリデーション
     validates :house_number
     #電話番号についてのバリデーション
-    validates :telephone_number, format: {with: /\A[a-zA-Z0-9]+\z/, message: '半角英数で入力してください'}
+    validates :telephone_number, format: {with: /\A[0-9]+\z/, message: '半角英数で入力してください'}
     validates :telephone_number, length: { maximum: 11 }
     #トークン情報について
     validates :token
