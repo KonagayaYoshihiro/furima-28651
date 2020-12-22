@@ -16,6 +16,8 @@ belongs_to :delivery_area
 belongs_to :shipping_day
 #画像
 has_one_attached :image
+#購入者
+has_many :purchase
 
 def was_attached?
   self.image.attached?
@@ -47,8 +49,3 @@ validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_eq
 
 
 end
-
-#都道府県(備忘録) 
- #belongs_to :prefecture
- #validates :prefecture_id, presence: true
- #validates :prefecture_id, numericality: { other_than: 1 } 
