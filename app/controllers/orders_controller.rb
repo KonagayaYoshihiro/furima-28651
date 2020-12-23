@@ -3,11 +3,12 @@ class OrdersController < ApplicationController
   before_action :item_find, only: [:index, :create]
 
   def index
-    @purchase_addresses = Order.new
-    if @item.purchase != nil || current_user.id == @item.user_id
+    if current_user.id == @item.user_id || @item.purchase.present?
       redirect_to root_path
-    #「商品に紐づく購入情報が存在」 || 「current_userと商品の出品者が一致」
+      #present?は「存在したら」の意味
     end
+    #「商品に紐づく購入情報が存在」 || 「current_userと商品の出品者が一致」
+      @purchase_addresses = Order.new
   end
 
   def create
