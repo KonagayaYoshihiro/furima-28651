@@ -76,3 +76,5 @@ gem 'payjp'
 group :production do
   gem 'rails_12factor'
 end
+
+gem 'rails-i18n'
